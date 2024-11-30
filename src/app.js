@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true }));  // Para manejar formularios UR
 app.use(express.static('public'));
 
 //Rutas de los endpoinds
-app.use('/api/', ProductosRoute);
-app.use('/api/', ImagenesRoute);
-app.use('/api/', AuthRoute);
+app.use(ProductosRoute);
+app.use(ImagenesRoute);
+app.use(AuthRoute);
 
 
 export default app;
