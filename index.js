@@ -5,7 +5,7 @@ import app from "./src/app.js";
 connectDB();
 
 // Ejecutamos la aplicación en el puerto 4000
-const port = 4000;
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`El servidor está escuchando en el puerto ${port}`);
