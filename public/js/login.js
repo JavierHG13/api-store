@@ -107,7 +107,7 @@ facebook.addEventListener('click', async (e) => {
         mensaje("Bienvenido " + userAutenticado.user.email, "success");
 
         setTimeout(() => {
-            location.href = "./productos.html";
+            location.href = "./index.html";
         }, 3000); 
     }
     catch (error) {
