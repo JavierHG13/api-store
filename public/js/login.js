@@ -28,7 +28,7 @@ btn_login.addEventListener('click', async (e) => {
         mensaje("Bienvenido " + resultado.user.email, "success");
 
         setTimeout(() => {
-            location.href = "./productos.html";
+            location.href = "./index.html";
         }, 3000);
 
     } catch (error) {
@@ -77,7 +77,7 @@ google.addEventListener('click', async (e) => {
         mensaje("Bienvenido " + userAutenticado.user.email, "success");
 
         setTimeout(() => {
-            location.href = "./productos.html";
+            location.href = "./index.html";
         }, 3000); 
     }
     catch (error) {
