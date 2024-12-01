@@ -85,6 +85,7 @@ export const login = async (req, res) => {
             Estado: "Correcto",  
             Salida: "Inicio de sesion exitoso", 
             id: userFound._id ,
+            nombreUsuario: userFound.nombreUsuario,
             rol: userFound.rol
         });
             
