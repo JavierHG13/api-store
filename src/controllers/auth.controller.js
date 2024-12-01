@@ -83,8 +83,11 @@ export const login = async (req, res) => {
         // Respuesta en caso de éxito con la estructura solicitada
         res.status(200).json({ 
             Estado: "Correcto",  
-            Salida: "Usuario existente", 
-            id: userFound._id });
+            Salida: "Inicio de sesion exitoso", 
+            id: userFound._id ,
+            rol: userFound.rol
+        });
+            
 
     } catch (error) {
         console.error("Error en el login:", error);
