@@ -50,9 +50,14 @@ router.delete('/productos/eliminar/:id', deleteProductById);
 //Ruta para obtener por estilo y genero
 //http://localhost:4000/api/productos/estilo-genero?estilo=Deportivo&genero=Hombre
 //http://localhost:4000/api/productos/Formal/Hombre
+//https://api-store-rouge.vercel.app/api/productos/Deportivo/Hombre
+
 
 //Ruta para obtener por estilos
 //http://localhost:4000/api/productos/estilo/Casual
+//https://api-store-rouge.vercel.app/api/productos/estilo/Deportivo
+
+
 
 
 

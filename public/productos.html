@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vercel | Dashboard</title>
+    <link rel="stylesheet" href="./css/navNar.css">
     <style>
         div {
             display: flex;
@@ -44,10 +45,12 @@
     </style>
 </head>
 <body>
+     <!-- Contenedor para el navbar -->
+     <div id="navbar"></div>
+
     <div>
         <h1>Lista de Productos</h1> 
         <button onclick="window.location.href='formulario.html'">Agregar</button>
-        <button id="cerrar_sesion">Cerrar Sesion</button>
     </div>
     
     <table id="tablaProductos">
@@ -137,6 +140,7 @@
         document.addEventListener('DOMContentLoaded', renderizarProductos);
     </script>
 
+    <script src="./js/navBar.js"></script>
     <script type="module" src="./main.js"></script>
 </body>
 </html>

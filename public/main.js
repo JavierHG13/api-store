@@ -14,14 +14,13 @@ onAuthStateChanged(auth, (user) => {
 
 
 //Funcion para cerrar sesion
-const cerrar_sesion = document.getElementById('cerrar_sesion')
+async function CerrarSesion(){
 
-cerrar_sesion.addEventListener('click', async (e) => {
     await signOut(auth)
     console.log('sesion cerrada')
 
     alert("Estas sesuro de cerrar seion")
-});
+};
 
 //Mostrar nombre del usuario logeado
 const usuario = localStorage.getItem("user");

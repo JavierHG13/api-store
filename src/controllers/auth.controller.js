@@ -2,31 +2,37 @@ import User from '../models/auth.models.js';
 import bcrypt from 'bcryptjs'
 
 export const register = async (req, res) => {
-
-    const { nombreUsuario, email, password, rol} = req.body;
+    const { nombreUsuario, email, password, rol } = req.body;
 
     console.log("Datos recibidos:", req.body);
 
     try {
+        // Verificar datos requeridos
         if (!email || !password || !nombreUsuario) {
-            return res.status(400).json({ message: "Faltan algunos datos" });
+            return res.status(400).json({ Estado: "false", Salida: "Faltan algunos datos"});
         }
 
+        // Buscar si el email ya está en uso
         const userSearch = await User.findOne({ email });
 
-        if(userSearch){
-            return res.status(400).json({ message: "El correo ya esta en uso" });
+        if (userSearch) {
+            return res.status(400).json({  Estado: "false",  Salida: "El correo ya está en uso" });
         }
 
-        if(password.length < 5){
-            return res.status(400).json({ message: "La contraseña es demasiado debil" });
+        // Validar la longitud de la contraseña
+        if (password.length < 5) {
+            return res.status(400).json({
+                Estado: "false",
+                Salida: "La contraseña es demasiado débil"
+            });
         }
 
         console.log("Iniciando el hash de la contraseña...");
+        // Hashear la contraseña
+        const passwordHash = await bcrypt.hash(password, 10);
 
-        const passwordHash = await bcrypt.hash(password, 10); // Hash de la contraseña
-        console.log("Contraseña hasheada:", passwordHash);
 
+        // Crear un nuevo usuario
         const newUser = new User({
             nombreUsuario,
             email,
@@ -36,59 +42,59 @@ export const register = async (req, res) => {
 
         const userSaved = await newUser.save(); // Guardar el usuario en la base de datos
 
-        // Responder al cliente con los datos del usuario
-        res.json({
-            id: userSaved._id,
-            email: userSaved.email,
-            role: userSaved.role, // Incluimos el rol en la respuesta
-            createdAt: userSaved.createdAt,
-            message: "Usuario creado correctamente"
-        });
+        res.json({ Estado: "true",  Salida: "Usuario registrado exitosamente." });
 
     } catch (error) {
-        console.log("Error al registrar usuario:", error); // Log de error si ocurre algo
-        res.status(500).json({ message: error.message });
+        console.log("Error al registrar usuario:", error);
+        
+        res.status(500).json({ Estado: "false", Salida: `Error del servidor: ${error.message}` });
     }
 };
-
-
 
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
 
+    // Validación de datos
     if (!email || !password) {
-        return res.status(400).json({ message: 'Email y contraseña son obligatorios' });
+        return res.status(400).json({
+            Estado: "Incorrecto",
+            Salida: "El correo y contraseña son obligatorios"
+        });
     }
-    
 
     try {
-        const userFound = await User.findOne({ email }); // Buscar el usuario por email
+        // Buscar usuario por email
+        const userFound = await User.findOne({ email });
 
-        // Si no encuentra el usuario
-        if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
+        // Si no se encuentra el usuario
+        if (!userFound) {
+            return res.status(400).json({ Estado: "Incorrecto", Salida: "Usuario no encontrado"  });
+        }
 
-        // Comparar la contraseña recibida con la de la base de datos
+        // Comparar la contraseña ingresada con la almacenada en la base de datos
         const isMatch = await bcrypt.compare(password, userFound.password);
 
         // Si la contraseña no coincide
-        if (!isMatch) return res.status(400).json({ message: "Contraseña incorrecta" });
+        if (!isMatch) {
+            return res.status(400).json({ Estado: "Incorrecto", Salida: "Contraseña incorrecta" });
+        }
 
+        // Respuesta en caso de éxito con la estructura solicitada
+        res.status(200).json({ 
+            Estado: "Correcto",  
+            Salida: "Usuario existente", 
+            id: userFound._id });
 
-        // Devolver los datos del usuario junto con su rol
-        res.status(200).json({
-            success: true,
-            message: "Inicio de sesión exitoso",
-            data: {
-                role: userFound.rol,  // Enviar el rol del usuario
-                createdAt: userFound.createdAt
-            }
-        });
-        
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error("Error en el login:", error);
+        res.status(500).json({
+            Estado: "Incorrecto",
+            Salida: `Error del servidor: ${error.message}`
+        });
     }
 };
+
 
 
 export const logout = async (req, res) => {

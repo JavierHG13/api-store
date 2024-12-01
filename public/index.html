@@ -4,51 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /* Estilos básicos del navbar */
-        nav {
-            background-color: #333;
-            overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-        }
-        nav a:hover {
-            background-color: #575757;
-            border-radius: 5px;
-        }
-        .nav-links {
-            display: flex;
-        }
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/navNar.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">Mi Página</div>
-        <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="productos.html">Productos</a>
-            <a href="contacto.html">Contacto</a>
-            <a href="sobre.html">Sobre Nosotros</a>
-        </div>
-    </nav>
+    
+     <!-- Contenedor para el navbar -->
+     <div id="navbar"></div>
+    
 
     <!-- Contenido de la página -->
     <h1>Página de Inicio</h1>
     <button onclick="window.location.href='productos.html'">Ver productos</button>
 
-    
+    <script src="./js/navBar.js"></script>
+    <script type="module" src="./main.js"></script>    
 </body>
 </html>
