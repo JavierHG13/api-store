@@ -9,22 +9,22 @@ export const register = async (req, res) => {
     try {
         // Verificar datos requeridos
         if (!email || !password || !nombreUsuario) {
-            return res.status(400).json({ Estado: "false", Salida: "Faltan algunos datos"});
+            return res.status(400).json( [ { Estado: "false", Salida: "Faltan algunos datos" } ]);
         }
 
         // Buscar si el email ya está en uso
         const userSearch = await User.findOne({ email });
 
         if (userSearch) {
-            return res.status(400).json({  Estado: "false",  Salida: "El correo ya está en uso" });
+            return res.status(400).json( [ { Estado: "false", Salida: "El correo ya está en uso" } ]);
         }
 
         // Validar la longitud de la contraseña
         if (password.length < 5) {
-            return res.status(400).json({
+            return res.status(400).json( [ {
                 Estado: "false",
                 Salida: "La contraseña es demasiado débil"
-            });
+            } ]);
         }
 
         console.log("Iniciando el hash de la contraseña...");
@@ -42,12 +42,12 @@ export const register = async (req, res) => {
 
         const userSaved = await newUser.save(); // Guardar el usuario en la base de datos
 
-        res.json({ Estado: "true",  Salida: "Usuario registrado exitosamente." });
+        res.json( [ { Estado: "true", Salida: "Usuario registrado exitosamente." } ] );
 
     } catch (error) {
         console.log("Error al registrar usuario:", error);
-        
-        res.status(500).json({ Estado: "false", Salida: `Error del servidor: ${error.message}` });
+
+        res.status(500).json( [ { Estado: "false", Salida: `Error del servidor: ${error.message}` } ]);
     }
 };
 
@@ -57,10 +57,10 @@ export const login = async (req, res) => {
 
     // Validación de datos
     if (!email || !password) {
-        return res.status(400).json({
+        return res.status(400).json( [ {
             Estado: "Incorrecto",
             Salida: "El correo y contraseña son obligatorios"
-        });
+        } ] );
     }
 
     try {
@@ -69,7 +69,7 @@ export const login = async (req, res) => {
 
         // Si no se encuentra el usuario
         if (!userFound) {
-            return res.status(400).json({ Estado: "Incorrecto", Salida: "Usuario no encontrado"  });
+            return res.status(400).json( [ { Estado: "Incorrecto", Salida: "Usuario no encontrado" } ] );
         }
 
         // Comparar la contraseña ingresada con la almacenada en la base de datos
@@ -77,27 +77,27 @@ export const login = async (req, res) => {
 
         // Si la contraseña no coincide
         if (!isMatch) {
-            return res.status(400).json({ Estado: "Incorrecto", Salida: "Contraseña incorrecta" });
+            return res.status(400).json( [ { Estado: "Incorrecto", Salida: "Contraseña incorrecta" } ] );
         }
 
         // Respuesta en caso de éxito con la estructura solicitada
         res.status(200).json([
-            { 
-                Estado: "Correcto",  
-                Salida: "Inicio de sesion exitoso", 
+            {
+                Estado: "Correcto",
+                Salida: "Inicio de sesion exitoso",
                 id: userFound._id,
                 nombreUsuario: userFound.nombreUsuario,
                 rol: userFound.rol
             }
         ]);
-            
+
 
     } catch (error) {
         console.error("Error en el login:", error);
-        res.status(500).json({
+        res.status(500).json( [ {
             Estado: "Incorrecto",
             Salida: `Error del servidor: ${error.message}`
-        });
+        } ]);
     }
 };
 
