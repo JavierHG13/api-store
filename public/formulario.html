@@ -6,21 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear producto</title>
-    <link rel="stylesheet" href="./css/navNar.css">
     <style>
+         /* Estilos básicos del navbar */
+         nav {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
         /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
         }
 
         /* Card para el formulario */
+         /*Cuerpo de la pagina*/
+         button {
+            background-color: rebeccapurple;
+            border-radius: 5px;
+            padding: 7px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 17px;
+            
+        }
         .card {
             background-color: #ffffff;
             padding: 20px;
@@ -28,6 +65,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 800px;
             max-width: 100%;
+            margin: 0 auto;
         }
 
         /* Título */
@@ -39,16 +77,6 @@
         }
 
         /* Estilo para el enlace */
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: white;
-            background-color: #007BFF;
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
 
         a:hover {
             background-color: #0056b3;

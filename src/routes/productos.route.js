@@ -23,11 +23,12 @@ router.get('/productos/:estilo/:genero', getProductsByStyleAndGender);
 //router.post('/productos/crear', upload.single('imagen1'), createProduct);
 
 // Actualizar un producto por ID
-router.put('/productos/editar/:id', updateProductById);
+router.put('/productos/actualizar/:id', updateProductById);
 
 // Eliminar un producto por ID
 router.delete('/productos/eliminar/:id', deleteProductById);
 
+export default router;
 
 //Jason para crear un nuevo producto
 //Url: http://localhost:4000/api/productos/crear
@@ -93,4 +94,3 @@ router.delete('/productos/eliminar/:id', deleteProductById);
 }) */
 
 
-export default router;
