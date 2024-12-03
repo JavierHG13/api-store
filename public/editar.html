@@ -259,9 +259,8 @@
     <script>
         //Funcion para obtener el id de la url
         const obtenerIdProducto = () => {
-            const path = window.location.pathname; // Obtiene el path completo
-            const id = path.split('/').pop(); // Obtiene el último segmento del path
-            return id;
+            const params = new URLSearchParams(window.location.search); // Obtener parámetros de la URL
+            return params.get('id'); // Retorna el valor del parámetro 'id'
         };
         
         // Llama a la función para obtener el ID

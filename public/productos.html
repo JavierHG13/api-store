@@ -139,7 +139,7 @@
                         <td><img src="${producto.imagen3}" alt="${producto.nombre}"></td>
                         <td><a href="${producto.video}" target="_blank">Ver Video</a></td>
                         <td>
-                            <button onclick="window.location.href='https://api-store-rouge.vercel.app/editar.html/${producto._id}'">Editar</button>
+                            <button onclick="window.location.href='editar.html?id=${producto._id}'">Editar</button>
                             <button onclick="eliminarProducto('${producto._id}')">Eliminar</button>
                         </td>
                     </tr>
