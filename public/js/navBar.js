@@ -1,5 +1,5 @@
 //Cargar el navabar
-document.addEventListener("DOMContentLoaded", () => {
+const cargarNavBar = () => {
 
   const navBar = document.getElementById('navbar');
 
@@ -14,4 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <button id="cerrar_sesion" onclick="CerrarSesion()">Cerrar Sesión</button>
       </div>
   </nav>`;
-});
+}
+
+cargarNavBar();
