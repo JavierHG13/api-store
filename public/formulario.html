@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear producto</title>
+    <style>
+         /* Estilos básicos del navbar */
+         nav {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+
+        nav a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Card para el formulario */
+         /*Cuerpo de la pagina*/
+         button {
+            background-color: rebeccapurple;
+            border-radius: 5px;
+            padding: 7px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 17px;
+            
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Título */
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin: 10px 0 20px;
+        }
+
+        /* Estilo para el enlace */
+
+        a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Agrupar etiquetas y campos en una fila */
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        /* Estilos para las etiquetas */
+        label {
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        /* Estilos para los campos de texto */
+        input[type="text"],
+        input[type="number"],
+        input[type="url"],
+        select,
+        textarea,
+        input[type="file"] {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #888;
+            font-style: italic;
+        }
+
+        /* Estilo para textarea */
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Estilo para los botones */
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        button[type="submit"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #45a049;
+        }
+
+        /* Estilo responsive para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .card {
+                width: 90%;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            label {
+                margin-bottom: 5px;
+            }
+
+            input[type="text"],
+            input[type="number"],
+            input[type="url"],
+            select,
+            textarea,
+            input[type="file"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+     <!-- Contenedor para el navbar -->
+     <div id="navbar"></div>
+
+    <div class="card">
+        <div>
+            <a href="productos.html">Ver productos</a>
+            <h2>Formulario para agregar una produto</h2>
+        </div>
+
+        <form id="productoForm" method="post">
+
+            <div class="form-group">
+                <label for="nombre">Nombre del Producto:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Camiseta Deportiva" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion" name="descripcion" placeholder="Camiseta de algodón, ideal para deporte. Disponible en varios colores."
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <input type="text" id="categoria" name="categoria" value="Ropa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" name="precio" placeholder="19.99" step="0.01" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <select id="genero" name="genero" required>
+                    <option value="Hombre" selected>Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="estilo">Estilo:</label>
+                <select id="estilo" name="estilo" required>
+                    <option value="Deportivo" selected>Deportivo</option>
+                    <option value="Casual">Casual</option>
+                    <option value="Formal">Formal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="imagen1">Imagen Principal:</label>
+                <input type="url" id="imagen1" name="imagen1" required placeholder="https://ejemplo.com/imagen1.jpg">
+            </div>
+
+            <div class="form-group">
+                <label for="imagen2">Imagen Secundaria:</label>
+                <input type="url" id="imagen2" name="imagen2" placeholder="https://ejemplo.com/imagen2.jpg">
+            </div>
+
+            <div class="form-group">
+                <label for="imagen3">Otra Imagen:</label>
+                <input type="url" id="imagen3" name="imagen3" placeholder="https://ejemplo.com/imagen3.jpg">
+            </div>
+
+            <div class="form-group">
+                <label for="video">Video Promocional:</label>
+                <input type="url" id="video" name="video" placeholder="https://ejemplo.com/videos/camiseta_promo.mp4">
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+
+        <p id="resultado"></p>
+    </div>
+
+
+    <script>
+        document.getElementById('productoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const categoria = document.getElementById('categoria').value;
+            const precio = document.getElementById('precio').value;
+            const genero = document.getElementById('genero').value;
+            const estilo = document.getElementById('estilo').value;
+            const imagen1 = document.getElementById('imagen1').value;
+            const imagen2 = document.getElementById('imagen2').value;
+            const imagen3 = document.getElementById('imagen3').value;
+            const video = document.getElementById('video').value;
+
+            // Validación de campos obligatorios
+            if (!nombre || !descripcion || !categoria || !precio || !genero || !estilo || !imagen1) {
+                alert('Por favor complete todos los campos obligatorios.');
+                return;
+            }
+
+            // Crear el objeto de datos (en vez de FormData, ya que estamos enviando JSON)
+            const producto = {
+                nombre,
+                descripcion,
+                categoria,
+                precio,
+                genero,
+                estilo,
+                imagen1,
+                imagen2,
+                imagen3,
+                video
+            };
+
+            // Realizar la solicitud HTTP
+            try {
+                const response = await fetch('https://api-store-rouge.vercel.app/api/productos/crear', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',  // Asegurarse de que se esté enviando JSON
+                    },
+                    body: JSON.stringify(producto),  // Aquí utilizamos el objeto `producto` con los datos del formulario
+                });
+
+                // Verificar si la respuesta es exitosa
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Producto creado correctamente');
+                    document.getElementById('resultado').textContent = 'Producto creado correctamente';
+                } else {
+                    document.getElementById('resultado').textContent = `Error: ${data.message}`;
+                }
+            } catch (error) {
+                console.error('Error al enviar el formulario:', error);
+                document.getElementById('resultado').textContent = 'Error al enviar el formulario.';
+            }
+        });        
+    </script>
+
+    <script src="./js/navBar.js"></script>
+    <script type="module" src="./main.js"></script> 
+    
+</body>
+
+</html>
